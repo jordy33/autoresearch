@@ -1,0 +1,18 @@
+{
+  "project_name": "Karpathy LLM Optimizer",
+  "metric": {
+    "name": "val_loss",
+    "goal": "minimize",
+    "feedback_signal": "Validation Loss"
+  },
+  "experiment": {
+    "target_file": "train.py",
+    "test_method": "uv run train.py",
+    "duration_minutes": 30,
+    "loop_interval_hours": 1
+  },
+  "agent_settings": {
+    "model": "gemini-2.5-pro",
+    "temperature": 0.7
+  }
+}
