@@ -31,7 +31,7 @@ def run_project(project_dir):
         project_name = config.get("project_name", "Unknown Project")
         target_file = config["experiment"]["target_file"]
         test_method = config["experiment"]["test_method"]
-        model_id = config["agent_settings"].get("model", "gemini-2.5-pro")
+        model_id = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash-lite")
         
         # Paths within the project directory
         target_path = os.path.join(project_dir, target_file)
@@ -117,6 +117,54 @@ def run_project(project_dir):
             f.write(f"Resultado (Logs): {output[-1000:]}\n") 
         
         print(f"Ciclo completado para {project_name}. Resultados guardados en {resource_path}.")
+
+        # --- TELEGRAM NOTIFICATIONS ---
+        from datetime import datetime
+        import urllib.request
+        import urllib.parse
+
+        def send_telegram(text):
+            token = os.environ.get("TELEGRAM_BOT_TOKEN")
+            chat_id = os.environ.get("TELEGRAM_CHAT_ID")
+            
+            # Load from .env if not in env
+            if not token or not chat_id:
+                env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
+                if os.path.exists(env_path):
+                    with open(env_path, "r") as ef:
+                        for line in ef:
+                            if line.startswith("TELEGRAM_BOT_TOKEN="): token = line.strip().split("=", 1)[1]
+                            if line.startswith("TELEGRAM_CHAT_ID="): chat_id = line.strip().split("=", 1)[1]
+            
+            if token and chat_id:
+                url = f"https://api.telegram.org/bot{token}/sendMessage"
+                data = urllib.parse.urlencode({"chat_id": chat_id, "text": text}).encode("utf-8")
+                try:
+                    req = urllib.request.Request(url, data=data)
+                    with urllib.request.urlopen(req) as response:
+                        pass
+                except Exception as e:
+                    print(f"Error enviando Telegram: {e}")
+
+        is_critical = "Error" in output or "-100.00" in output
+        current_hour = datetime.now().hour
+        
+        if is_critical:
+            send_telegram(f"🚨 ERROR CRÍTICO en {project_name}:\n{output[-500:]}")
+        elif current_hour == 8: # Morning summary window (8:00 AM)
+            summary_file = os.path.join(project_dir, ".last_summary")
+            today_str = datetime.now().strftime("%Y-%m-%d")
+            already_sent = False
+            if os.path.exists(summary_file):
+                with open(summary_file, "r") as sf:
+                    if sf.read().strip() == today_str:
+                        already_sent = True
+            
+            if not already_sent:
+                send_telegram(f"🌅 RESUMEN MATUTINO ({project_name})\n\nHipótesis de la noche:\n{hypothesis}\n\nÚltimo Resultado:\n{output[-200:]}")
+                with open(summary_file, "w") as sf:
+                    sf.write(today_str)
+        # ------------------------------
 
         # Escribir la marca de tiempo de última ejecución para el daemon
         last_run_file = os.path.join(project_dir, ".last_run")

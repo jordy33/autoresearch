@@ -1,0 +1,22 @@
+{
+  "project_name": "Bitcoin_Binance_Automated",
+  "metric": {
+    "name": "profit_loss_pct",
+    "goal": "maximize",
+    "feedback_signal": "Binance Portfolio Balance"
+  },
+  "experiment": {
+    "target_file": "strategy.py",
+    "test_method": "/home/ubuntu/autoresearch/test/.venv/bin/python dry_run.py",
+    "loop_interval_hours": 1 
+  },
+  "tools": {
+    "type": "MCP",
+    "name": "binance_mcp_server",
+    "endpoint": "https://binance.armaddia.lat/sse"
+  },
+  "notifications": {
+    "type": "telegram",
+    "events": ["daily_morning_summary", "critical_error"]
+  }
+}

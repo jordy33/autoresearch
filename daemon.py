@@ -59,7 +59,7 @@ def run_daemon():
             if now - last_run_time >= interval_seconds:
                 print(f"[{time.strftime('%Y-%m-%d %H:%M:%S')}] Spawning orchestrator for: {p}")
                 try:
-                    subprocess.Popen(["uv", "run", "core/orchestrator.py", p_path])
+                    subprocess.Popen(["/home/ubuntu/.local/bin/uv", "run", "core/orchestrator.py", p_path])
                 except Exception as e:
                     print(f"[{p}] Failed to start orchestrator: {e}")
                     
