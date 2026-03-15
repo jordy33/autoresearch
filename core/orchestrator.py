@@ -111,8 +111,10 @@ def run_project(project_dir):
             output = f"Error durante la ejecución: {e}"
 
         # GUARDAR APRENDIZAJE
+        from datetime import datetime, timezone
+        timestamp_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
         with open(resource_path, "a") as f:
-            f.write(f"\n--- Nuevo Experimento ---\n")
+            f.write(f"\n--- Nuevo Experimento ({timestamp_utc}) ---\n")
             f.write(f"Hipótesis: {hypothesis}\n")
             f.write(f"Resultado (Logs): {output[-1000:]}\n") 
         
