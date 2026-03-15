@@ -32,6 +32,24 @@ This project uses the framework to evolve a Bitcoin trading strategy autonomousl
 - **Feedback Loop:** The agent reads its own failures (Tracebacks) and successes (Profit/Loss %) from `resource.md` to learn.
 - **Reporting:** Sends daily morning summaries (8:00 AM Mexico Time) and critical alerts via **Telegram Bot**.
 
+## When Auto-Research Works (Fast Feedback)
+- **Works great for autoresearch:**
+  - Fast feedback (hours)
+  - Clear metric (reply rate, CIR)
+  - API access to change inputs
+- **Other potential projects:**
+  - Cold email
+  - Landing pages
+  - Ad copy
+- **Example goals:**
+  - Complex sales
+  - Brand building
+  - Relationship selling
+- **Not ideal for:**
+  - Slow feedback (months)
+  - Fuzzy metrics
+  - Manual-only changes
+
 ## Code & MCP Server
 MCP is required as the interface to Binance (SSE) for live trading.
 
