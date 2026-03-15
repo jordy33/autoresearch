@@ -27,10 +27,17 @@ This project uses the framework to evolve a Bitcoin trading strategy autonomousl
 
 ### Key Features
 - **Brain:** Powered by `gemini-2.0-flash-lite` for fast, cost-effective iterations.
-- **Data Source:** Connected via MCP to `https://binance.armaddia.lat/sse`.
+- **Data Source:** Uses the **Model Context Protocol (MCP)** as the interface to Binance market feeds (SSE). The SSE endpoint is configurable in `projects/binance_trading/config.json`.
 - **Simulation:** Uses `dry_run.py` to test every new code variant against 500 hours of historical data before deployment.
 - **Feedback Loop:** The agent reads its own failures (Tracebacks) and successes (Profit/Loss %) from `resource.md` to learn.
 - **Reporting:** Sends daily morning summaries (8:00 AM Mexico Time) and critical alerts via **Telegram Bot**.
+
+## Code & MCP Server
+MCP is required as the interface to Binance (SSE) for live trading.
+
+You can implement and run an MCP server using the code from:
+
+**Source Code:** https://github.com/jordy33/binance_mcp
 
 ### Technical Stack
 - **AI:** Google Gemini (Generative AI).
