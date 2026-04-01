@@ -32,7 +32,7 @@ This project uses the framework to evolve a Bitcoin trading strategy autonomousl
 - **Feedback Loop:** The agent reads its own failures (Tracebacks) and successes (Profit/Loss %) from `resource.md` to learn.
 - **Reporting:** Sends daily morning summaries (8:00 AM Mexico Time) and critical alerts via **Telegram Bot**.
 
-## When Auto-Research Works (Fast Feedback)
+## When Auto-Research Works
 - **Works great for autoresearch:**
   - Fast feedback (hours)
   - Clear metric (reply rate, CIR)

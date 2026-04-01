@@ -10,15 +10,15 @@
 
 ## Phase 2: Core Strategy & Baseline
 - [x] Implement initial `strategy.py` (Baseline RSI).
-- [ ] Create `backtest.py` / Execution engine.
-    - [ ] Must connect to MCP Server (`https://binance.armaddia.lat/sse`).
-    - [ ] Must produce a clean numeric output for `profit_loss_pct`.
-- [ ] Set up environment variables (`.env`) for Binance and Telegram.
-- [ ] Implement Telegram notification logic.
-    - [ ] Phase 2A: Experiment-level notifications (Real-time feedback).
-    - [ ] Phase 2B: Transition to Daily Morning Summary (Stable phase).
+- [x] Create `backtest.py` / Execution engine.
+    - [x] Must connect to MCP Server (`https://binance.armaddia.lat/sse`).
+    - [x] Must produce a clean numeric output for `profit_loss_pct`.
+- [x] Set up environment variables (`.env`) for Binance and Telegram.
+- [x] Implement Telegram notification logic.
+    - [x] Phase 2A: Experiment-level notifications (Real-time feedback).
+    - [x] Phase 2B: Transition to Daily Morning Summary (Stable phase).
 
 ## Phase 3: Loop Integration
-- [ ] Connect `projects/binance_trading` to `core/orchestrator.py`.
-- [ ] Run first automated experiment iteration.
-- [ ] Verify that findings and metrics are correctly logged in `resource.md`.
+- [x] Connect `projects/binance_trading` to `core/orchestrator.py`.
+- [x] Run first automated experiment iteration.
+- [x] Verify that findings and metrics are correctly logged in `resource.md`.

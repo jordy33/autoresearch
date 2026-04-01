@@ -2,11 +2,20 @@ import os
 import json
 import time
 import subprocess
+import threading
+
+from core.telegram_bot import run_telegram_listener
 
 PROJECTS_DIR = "projects"
 CHECK_INTERVAL_SECONDS = 60
 
 def run_daemon():
+    # Start Telegram listener in a background thread
+    telegram_thread = threading.Thread(
+        target=run_telegram_listener, daemon=True
+    )
+    telegram_thread.start()
+
     print(f"Starting auto-research daemon. Checking '{PROJECTS_DIR}' every {CHECK_INTERVAL_SECONDS} seconds.")
     print("Press Ctrl+C to stop.")
     

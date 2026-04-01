@@ -1,0 +1,14 @@
+  El Ecosistema Completo:
+   1. Track 1: Binance Automated Trading (El Laboratorio)
+      - Hace Dry Runs, investiga, y escribe el código (strategy.py).
+   2. Track 2: Binance Live Trading (El Motor de Producción)
+      - Ejecuta órdenes reales usando el código validado y gestiona el riesgo.
+   3. Track 3: Binance Autopilot (El Puente de Automatización)
+      - El Motor de Ascenso (promote.py): Revisa el Laboratorio a diario. Si la IA tuvo un gran éxito constante, copia la
+        estrategia a Producción y la arranca. Te avisa: "🟢 PROMOTION: Strategy X meets maturity criteria. Deploying to LIVE."
+      - El Motor de Descenso (Circuit Breaker): Monitorea Producción. Si el mercado cambia y la estrategia pierde, apaga todo
+        inmediatamente, le dice al Laboratorio por qué falló, y te avisa: "🔴 DEMOTION: Circuit breaker tripped. Live trading
+        paused. Returning to lab."
+
+
+  Con esto, tienes completamente planeado el flujo de ida y vuelta para lograr autonomía total con seguridad.
